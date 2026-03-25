@@ -1,0 +1,743 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --blue: #1560BD;
+    --blue-light: #e8f0fd;
+    --blue-mid: #2b8aef;
+    --green: #1a9e5f;
+    --green-light: #e6f7ef;
+    --red: #d93025;
+    --red-light: #fff0ef;
+    --gray-50: #f7f9fc;
+    --gray-100: #edf1f7;
+    --gray-200: #dde4ef;
+    --gray-400: #9aabbc;
+    --gray-600: #5a6a7a;
+    --gray-800: #1e2d3d;
+    --border: #d5dfe9;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 2px 12px rgba(21,96,189,0.08);
+    --shadow-lg: 0 8px 32px rgba(21,96,189,0.13);
+    --font: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+html, body {
+    font-family: var(--font);
+    background: var(--gray-50);
+    color: var(--gray-800);
+    font-size: 15px;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===== HEADER ===== */
+.app-header {
+    background: var(--blue);
+    color: #fff;
+    padding: 18px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(21,96,189,0.3);
+}
+
+.header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-logo {
+    width: 42px;
+    height: 42px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.header-title h1 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+.header-title p {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 1px;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+}
+
+/* ===== SECTION CARDS ===== */
+.card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 28px 24px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(213,223,233,0.5);
+}
+
+.card h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--blue-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--blue-light);
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.card h3 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin: 22px 0 12px;
+}
+
+/* ===== GRID ===== */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    overflow: visible;
+}
+
+/* ===== INPUTS & SELECTS ===== */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--gray-50);
+    font-family: var(--font);
+    font-size: 14px;
+    color: var(--gray-800);
+    transition: border-color .15s, box-shadow .15s, background .15s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a6a7a' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+/* Mantener la flecha del select incluso con clases de error/válido */
+select.input-error,
+select.input-valid {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a6a7a' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--blue-mid);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(43,138,239,0.1);
+}
+
+input::placeholder,
+textarea::placeholder { color: var(--gray-400); }
+
+/* ===== INPUT STATES ===== */
+.input-error {
+    border-color: var(--red) !important;
+    background: var(--red-light) !important;
+}
+.input-valid {
+    border-color: var(--green) !important;
+    background: var(--green-light) !important;
+}
+
+.error-message {
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+.valid-message   { color: var(--green); }
+.invalid-message { color: var(--red); }
+
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-6px); }
+    40%  { transform: translateX(6px); }
+    60%  { transform: translateX(-4px); }
+    80%  { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+.input-shake { animation: shake 420ms ease; }
+
+/* ===== CHECKLIST ===== */
+.checklist-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.checklist-column { flex: 1 1 0; }
+
+.checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checklist label {
+    display: flex;
+    align-items: center;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: white;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    position: relative;
+    gap: 0;
+}
+
+.checklist label:hover {
+    border-color: #cfe6ff;
+    background: #fafcff;
+}
+
+.checklist input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.check-label-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--gray-800);
+    line-height: 1.35;
+    width: 100%;
+}
+
+/* Custom checkbox box */
+.check-label-text::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    background: var(--gray-50);
+    transition: all .15s ease;
+}
+
+.checklist input[type="checkbox"]:checked + .check-label-text::before {
+    background: var(--blue-mid);
+    border-color: var(--blue-mid);
+}
+
+/* Checkmark tick */
+.checklist input[type="checkbox"]:checked + .check-label-text::after {
+    content: '✓';
+    position: absolute;
+    left: 18px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.checklist label:has(input:checked) {
+    border-color: #cfe6ff;
+    background: #f0f7ff;
+}
+
+/* ===== CHECK COUNTER ===== */
+.check-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.count-badge {
+    background: var(--blue-light);
+    color: var(--blue);
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+/* ===== SELECT ALL BUTTON ===== */
+.btn.select-all-global {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--blue-mid);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s ease;
+}
+.btn.select-all-global:not(:disabled):hover {
+    background: var(--blue-light);
+    border-color: var(--blue-mid);
+}
+.btn.select-all-global:disabled { opacity: 0.45; cursor: default; }
+
+.btn-icon { width: 18px; height: 18px; display: inline-block; vertical-align: middle; }
+.btn-icon svg { width: 100%; height: 100%; fill: currentColor; }
+
+/* ===== TEXTAREA ===== */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+/* ===== SERIES PILLS ===== */
+.series-pill {
+    display: inline-block;
+    background: var(--blue-light);
+    border-radius: 6px;
+    padding: 3px 9px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+}
+
+/* ===== FIRMA ===== */
+.firma-container {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    width: 100%;
+    max-width: 520px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.firma-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gray-400);
+    font-size: 13px;
+    text-align: center;
+    pointer-events: none;
+    transition: opacity .2s;
+}
+.firma-placeholder .ph-icon { font-size: 28px; display: block; margin-bottom: 4px; }
+
+#signaturePad {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+    cursor: crosshair;
+}
+
+.firma-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.firma-buttons button {
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all .15s;
+}
+
+.btn-limpiar {
+    background: var(--gray-100);
+    color: var(--gray-600);
+}
+.btn-limpiar:hover { background: var(--gray-200); }
+
+.btn-confirmar {
+    background: var(--blue);
+    color: white;
+    box-shadow: 0 4px 12px rgba(21,96,189,0.2);
+}
+.btn-confirmar:hover { filter: brightness(1.08); }
+
+.firma-confirmed {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--green-light);
+    border-radius: var(--radius-sm);
+    color: var(--green);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    max-width: 520px;
+}
+.firma-confirmed.show { display: flex; }
+
+/* ===== SUBMIT BUTTON ===== */
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 13px 28px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(26,158,95,0.28);
+    transition: all .15s;
+    letter-spacing: -0.2px;
+}
+.submit-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.submit-btn:active { transform: scale(0.98); }
+
+/* ===== PDF OVERLAY ===== */
+#pdfOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+}
+#pdfOverlay > div {
+    background: white;
+    padding: 28px 40px;
+    border-radius: 16px;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+
+/* ===== ACCIONES FINALES ===== */
+.acciones-finales {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* ===== BOTÓN NUEVA ACTA ===== */
+.nueva-acta-btn {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    color: var(--blue);
+    border: 2px solid var(--blue);
+    border-radius: var(--radius-sm);
+    padding: 12px 28px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .15s;
+    letter-spacing: -0.2px;
+}
+.nueva-acta-btn:hover {
+    background: var(--blue-light);
+    transform: translateY(-1px);
+}
+.nueva-acta-btn:active { transform: scale(0.98); }
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 860px) {
+    .container { padding: 24px 18px 48px; }
+    .card { padding: 22px 20px; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    /* Evita overflow horizontal */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* Header compacto */
+    .app-header { padding: 12px 14px; }
+    .header-logo { width: 34px; height: 34px; font-size: 16px; }
+    .header-title h1 { font-size: 14px; }
+    .header-title p  { font-size: 11px; }
+
+    /* Contenedor sin padding lateral extra */
+    .container {
+        width: 100%;
+        padding: 12px 10px 48px;
+    }
+
+    /* Cards sin border-radius pronunciado en bordes de pantalla */
+    .card {
+        padding: 16px 12px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+    }
+
+    .card h2 {
+        font-size: 14px;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        gap: 8px;
+    }
+
+    .section-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 13px;
+    }
+
+    .card h3 {
+        font-size: 11px;
+        margin: 16px 0 10px;
+    }
+
+    /* Grid de 1 columna */
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    /* Inputs más cómodos al teclado */
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="tel"],
+    select,
+    textarea {
+        font-size: 16px; /* evita zoom automático en iOS */
+        padding: 13px 12px;
+        border-radius: 8px;
+    }
+
+    /* Checklist en columna única */
+    .checklist-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .checklist-column {
+        width: 100%;
+    }
+
+    /* Items de checklist con área táctil más grande */
+    .checklist label {
+        padding: 13px 12px;
+        border-radius: 8px;
+        gap: 0;
+    }
+
+    .check-label-text {
+        font-size: 13px;
+        gap: 10px;
+    }
+
+    .check-label-text::before {
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+        border-radius: 6px;
+    }
+
+    .checklist input[type="checkbox"]:checked + .check-label-text::after {
+        left: 16px;
+        font-size: 13px;
+    }
+
+    /* Botón seleccionar todo ancho completo */
+    .btn.select-all-global {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    /* Pills de series */
+    .series-pill { font-size: 10px; }
+
+    /* Observación */
+    textarea { min-height: 90px; }
+
+    /* Firma ocupa todo el ancho */
+    .firma-container {
+        max-width: 100%;
+        height: 160px;
+        border-radius: 8px;
+    }
+
+    .firma-placeholder { font-size: 12px; }
+    .firma-placeholder .ph-icon { font-size: 24px; }
+
+    /* Botones de firma apilados */
+    .firma-buttons {
+        flex-direction: row;
+        gap: 8px;
+        margin-top: 10px;
+        margin-bottom: 14px;
+    }
+
+    .firma-buttons button {
+        flex: 1;
+        padding: 12px 8px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+
+    /* Confirmación de firma */
+    .firma-confirmed {
+        max-width: 100%;
+        font-size: 13px;
+        margin-bottom: 14px;
+    }
+
+    /* Botón generar PDF ancho completo */
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 20px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    /*columna en móvil */
+    .acciones-finales {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nueva-acta-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 20px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    /* Check counter */
+    .check-counter { font-size: 12px; }
+
+    /* Overlay PDF */
+    #pdfOverlay > div {
+        margin: 0 20px;
+        padding: 22px 24px;
+        font-size: 14px;
+        border-radius: 12px;
+    }
+}
+
+
+/* ===================================================
+   FIRMANTE CHECKBOX
+   =================================================== */
+.firmante-checkbox-row {
+    margin: 18px 0 10px 0;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #e8f4fd 0%, #d0e8f8 100%);
+    border: 1.5px solid #1a73e8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-firmante-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1558b0;
+    user-select: none;
+}
+
+.checkbox-firmante-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #1a73e8;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.checkbox-firmante-text {
+    line-height: 1.3;
+}
+
+#datosFirmanteSection {
+    overflow: visible;
+    transition: opacity 0.25s ease;
+}
+
+#datosFirmanteSection.hidden {
+    display: none;
+}
+
+@media print { button { display: none; } }
