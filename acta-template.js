@@ -2,11 +2,11 @@
 
 function generarContenidoActa(data) {
 
-    const chk = (valor) => valor
-        ? `<span class="chk-si">SI</span>`
-        : `<span class="chk-no">NO</span>`;
+  const chk = (valor) => valor
+    ? `<span class="chk-si">SI</span>`
+    : `<span class="chk-no">NO</span>`;
 
-    const val = (v) => (v && String(v).trim()) ? v : '—';
+  const val = (v) => (v && String(v).trim()) ? v : '';
 
     return `
     <style>
@@ -197,7 +197,7 @@ function generarContenidoActa(data) {
       <table>
         <tr>
           <td class="lc" style="width:18%">Firma Digital</td>
-          <td class="firma-area">${data.firma ? `<img src="${data.firma}" alt="firma">` : '—'}</td>
+          <td class="firma-area">${data.firma ? `<img src="${data.firma}" alt="firma">` : ''}</td>
         </tr>
       </table>
 
