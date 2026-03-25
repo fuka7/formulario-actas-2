@@ -168,12 +168,12 @@ function generarContenidoActa(data) {
 
       <div class="spacer"></div>
 
-      <!-- RESPONSABLE MINSAL + FIRMANTE -->
-      <!-- Siempre 2 columnas: col izquierda = Responsable MINSAL, col derecha = Firmante -->
+      <!-- USUARIO ASIGNADO + FIRMANTE -->
+      <!-- Siempre 2 columnas: col izquierda = Usuario Asignado, col derecha = Firmante -->
       <div class="firma-grid">
         <div class="firma-col">
           <table>
-            <tr class="section-header"><td colspan="2"><strong>Responsable MINSAL</strong></td></tr>
+            <tr class="section-header"><td colspan="2"><strong>Usuario Asignado</strong></td></tr>
             <tr><td class="lc">Nombre</td><td>${val(data.nombreUsuario)}</td></tr>
             <tr><td class="lc">RUT</td><td>${val(data.rutUsuarioAsignado)}</td></tr>
             <tr><td class="lc">Cargo</td><td>${val(data.cargoUsuarioFirma)}</td></tr>
