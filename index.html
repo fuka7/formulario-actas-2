@@ -123,55 +123,37 @@
             </div>
         </section>
 
-
-        <!-- DATOS Usuario Asignado-->
+        <!-- DATOS TÉCNICO INSTALADOR -->
         <section class="card">
-            <h2><span class="section-icon">👨‍💼</span>Usuario Asignado</h2>
+            <h2><span class="section-icon">🔧</span> Técnico Instalador</h2>
+            <div class="grid-2">
+                <input type="text" id="tecnico" placeholder="Nombre del Técnico Instalador">
+                <div>
+                    <input type="text" id="rutTecnico" placeholder="RUT Técnico (12.345.678-9)" maxlength="12">
+                    <small id="errorRutTecnico" class="error-message"></small>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATOS FIRMANTE -->
+        <section class="card">
+            <h2><span class="section-icon">&#9998;</span> Datos Firmante</h2>
 
             <div class="grid-2">
-                <input type="text" id="nombreUsuario" placeholder="Nombre Completo" required>
+                <input type="text" id="nombreFirmante" placeholder="Nombre Completo" required>
                 <div>
-                    <input type="text" id="rutUsuarioAsignado" placeholder="RUT (12.345.678-9)" maxlength="12" required>
-                    <small id="errorRutUsuarioAsignado" class="error-message"></small>
+                    <input type="text" id="rutFirmante" placeholder="RUT (12.345.678-9)" maxlength="12" required>
+                    <small id="errorRutFirmante" class="error-message"></small>
                 </div>
-                <input type="text" id="cargoUsuarioFirma" placeholder="Cargo" required>
-                <div style="position:relative"><input type="text" id="unidadUsuario" placeholder="Unidad o Departamento" style="width:100%"></div>
+                <input type="text" id="cargoFirmante" placeholder="Cargo" required>
+                <div style="position:relative"><input type="text" id="unidadFirmante" placeholder="Unidad o Departamento" style="width:100%"></div>
                 <div>
-                    <input type="email" id="correoUsuario" placeholder="Correo electrónico">
-                    <small id="errorCorreoUsuario" class="error-message"></small>
+                    <input type="email" id="correoFirmante" placeholder="Correo electrónico">
+                    <small id="errorCorreoFirmante" class="error-message"></small>
                 </div>
                 <div>
-                    <input type="text" id="telefonoUsuario" placeholder="Teléfono">
-                    <small id="errorTelefonoUsuario" class="error-message"></small>
-                </div>
-            </div>
-
-            <!-- DATOS FIRMANTE -->
-            <div class="firmante-checkbox-row">
-                <label class="checkbox-firmante-label">
-                    <input type="checkbox" id="mismoFirmante" onchange="toggleDatosFirmante(this)">
-                    <span class="checkbox-firmante-text">El Usuario Asignado es la misma persona que firmará el acta</span>
-                </label>
-            </div>
-
-            <div id="datosFirmanteSection">
-                <h3><span class="section-icon" style="font-size:15px;">&#9998;</span> Datos Firmante</h3>
-                <div class="grid-2">
-                    <input type="text" id="nombreFirmante" placeholder="Nombre Completo">
-                    <div>
-                        <input type="text" id="rutFirmante" placeholder="RUT (12.345.678-9)" maxlength="12">
-                        <small id="errorRutFirmante" class="error-message"></small>
-                    </div>
-                    <input type="text" id="cargoFirmante" placeholder="Cargo">
-                    <div style="position:relative"><input type="text" id="unidadFirmante" placeholder="Unidad o Departamento" style="width:100%"></div>
-                    <div>
-                        <input type="email" id="correoFirmante" placeholder="Correo electrónico">
-                        <small id="errorCorreoFirmante" class="error-message"></small>
-                    </div>
-                    <div>
-                        <input type="text" id="telefonoFirmante" placeholder="Teléfono">
-                        <small id="errorTelefonoFirmante" class="error-message"></small>
-                    </div>
+                    <input type="text" id="telefonoFirmante" placeholder="Teléfono">
+                    <small id="errorTelefonoFirmante" class="error-message"></small>
                 </div>
             </div>
 
@@ -217,19 +199,5 @@
 <script src="validaciones.js"></script>
 <script src="script.js"></script>
 
-    <script>
-        function toggleDatosFirmante(checkbox) {
-            var section = document.getElementById('datosFirmanteSection');
-            if (checkbox.checked) {
-                section.classList.add('hidden');
-                // Limpia campos y errores usando la función de validaciones.js
-                if (typeof limpiarValidacionesFirmante === 'function') {
-                    limpiarValidacionesFirmante();
-                }
-            } else {
-                section.classList.remove('hidden');
-            }
-        }
-    </script>
 </body>
 </html>

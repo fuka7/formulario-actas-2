@@ -163,37 +163,41 @@ function generarContenidoActa(data) {
 
       <div class="spacer"></div>
 
+      <!-- TÉCNICO INSTALADOR -->
+      <table>
+        <tr class="section-header"><td colspan="4"><strong>Técnico Instalador</strong></td></tr>
+        <tr>
+          <td class="lc">Nombre</td>
+          <td>${val(data.tecnico)}</td>
+          <td class="lc">RUT</td>
+          <td>${val(data.rutTecnico)}</td>
         </tr>
       </table>
 
       <div class="spacer"></div>
 
-      <!-- USUARIO ASIGNADO + FIRMANTE -->
-      <!-- Siempre 2 columnas: col izquierda = Usuario Asignado, col derecha = Firmante -->
-      <div class="firma-grid">
-        <div class="firma-col">
-          <table>
-            <tr class="section-header"><td colspan="2"><strong>Usuario Asignado</strong></td></tr>
-            <tr><td class="lc">Nombre</td><td>${val(data.nombreUsuario)}</td></tr>
-            <tr><td class="lc">RUT</td><td>${val(data.rutUsuarioAsignado)}</td></tr>
-            <tr><td class="lc">Cargo</td><td>${val(data.cargoUsuarioFirma)}</td></tr>
-            <tr><td class="lc">Unidad</td><td>${val(data.unidadUsuario)}</td></tr>
-            <tr><td class="lc">Correo</td><td>${val(data.correoUsuario)}</td></tr>
-            <tr><td class="lc">Teléfono</td><td>${val(data.telefonoUsuario)}</td></tr>
-          </table>
-        </div>
-        <div class="firma-col">
-          <table>
-            <tr class="section-header"><td colspan="2"><strong>Datos Firmante</strong></td></tr>
-            <tr><td class="lc">Nombre</td><td>${data.mismoFirmante ? val(data.nombreUsuario)    : val(data.nombreFirmante)}</td></tr>
-            <tr><td class="lc">RUT</td><td>${data.mismoFirmante    ? val(data.rutUsuarioAsignado): val(data.rutFirmante)}</td></tr>
-            <tr><td class="lc">Cargo</td><td>${data.mismoFirmante  ? val(data.cargoUsuarioFirma) : val(data.cargoFirmante)}</td></tr>
-            <tr><td class="lc">Unidad</td><td>${data.mismoFirmante ? val(data.unidadUsuario)     : val(data.unidadFirmante)}</td></tr>
-            <tr><td class="lc">Correo</td><td>${data.mismoFirmante ? val(data.correoUsuario)     : val(data.correoFirmante)}</td></tr>
-            <tr><td class="lc">Teléfono</td><td>${data.mismoFirmante ? val(data.telefonoUsuario) : val(data.telefonoFirmante)}</td></tr>
-          </table>
-        </div>
-      </div>
+      <!-- DATOS FIRMANTE -->
+      <table>
+        <tr class="section-header"><td colspan="4"><strong>Datos Firmante</strong></td></tr>
+        <tr>
+          <td class="lc">Nombre</td>
+          <td>${val(data.nombreFirmante)}</td>
+          <td class="lc">RUT</td>
+          <td>${val(data.rutFirmante)}</td>
+        </tr>
+        <tr>
+          <td class="lc">Cargo</td>
+          <td>${val(data.cargoFirmante)}</td>
+          <td class="lc">Unidad</td>
+          <td>${val(data.unidadFirmante)}</td>
+        </tr>
+        <tr>
+          <td class="lc">Correo</td>
+          <td>${val(data.correoFirmante)}</td>
+          <td class="lc">Teléfono</td>
+          <td>${val(data.telefonoFirmante)}</td>
+        </tr>
+      </table>
       <table>
         <tr>
           <td class="lc" style="width:18%">Firma Digital</td>

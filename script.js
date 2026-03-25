@@ -278,20 +278,12 @@ function resetForm() {
     Array.from(document.querySelectorAll('#registroForm .input-error, #registroForm .input-valid'))
         .forEach(el => el.classList.remove('input-error', 'input-valid'));
 
-    ['errorRutUsuarioDG','errorRutTecnico','errorRutUsuarioAsignado','errorEmailUsuarioDG','errorCorreoUsuario','errorTelefonoDG','errorTelefonoUsuario',
+    ['errorRutUsuarioDG','errorRutTecnico','errorEmailUsuarioDG','errorCorreoUsuario','errorTelefonoDG',
      'errorRutFirmante','errorCorreoFirmante','errorTelefonoFirmante']
         .forEach(id => {
             const el = document.getElementById(id);
             if (el) { el.style.display = 'none'; el.textContent = ''; }
         });
-
-    // Restablecer checkbox firmante y mostrar sección
-    const chkFirmante = document.getElementById('mismoFirmante');
-    if (chkFirmante) {
-        chkFirmante.checked = false;
-        const section = document.getElementById('datosFirmanteSection');
-        if (section) section.classList.remove('hidden');
-    }
 }
 
 
@@ -341,21 +333,15 @@ window.generarPDF = async function () {
         // Series
         serieSaliente:     g("serieSaliente"),
         serieRecambio:     g("serieRecambio"),
-        // Técnico
+        // Técnico Instalador
+        tecnico:           g("tecnico"),
+        rutTecnico:        g("rutTecnico"),
         // Checklists
         instalacionChecks: Array.from(document.querySelectorAll(".checklist.instalacion input")).map(i => i.checked),
         validacionChecks:  Array.from(document.querySelectorAll(".checklist.validacion input")).map(i => i.checked),
-        // Usuario Asignado / Responsable MINSAL (firma)
-        nombreUsuario:     g("nombreUsuario"),
-        rutUsuarioAsignado: g("rutUsuarioAsignado"),
-        cargoUsuarioFirma: g("cargoUsuarioFirma"),
-        unidadUsuario:     g("unidadUsuario"),
-        correoUsuario:     g("correoUsuario"),
-        telefonoUsuario:   g("telefonoUsuario"),
-        firma,
-        // Firmante (puede ser distinto al usuario asignado)
-        mismoFirmante:     document.getElementById("mismoFirmante")?.checked ?? false,
+        // Firmante
         nombreFirmante:    g("nombreFirmante"),
+        firma,
         rutFirmante:       g("rutFirmante"),
         cargoFirmante:     g("cargoFirmante"),
         unidadFirmante:    g("unidadFirmante"),
