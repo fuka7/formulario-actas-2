@@ -321,9 +321,10 @@ window.generarPDF = async function () {
 
     const data = {
         numeroActa,
-        fecha:             g("fecha")
-                           ? new Date(g("fecha") + 'T12:00:00').toLocaleDateString('es-CL')
-                           : new Date().toLocaleDateString('es-CL'),
+        // Si el campo fecha está vacío, dejarlo vacío en el acta
+        fecha: g("fecha")
+            ? new Date(g("fecha") + 'T12:00:00').toLocaleDateString('es-CL')
+            : '',
         // Datos del establecimiento
         organismo:         g("organismo"),
         establecimiento:   g("establecimiento"),
