@@ -336,6 +336,8 @@ window.generarPDF = async function () {
         // Técnico Instalador
         tecnico:           g("tecnico"),
         rutTecnico:        g("rutTecnico"),
+        // Observaciones
+        observacion:       g("observacionTecnico"),
         // Checklists
         instalacionChecks: Array.from(document.querySelectorAll(".checklist.instalacion input")).map(i => i.checked),
         validacionChecks:  Array.from(document.querySelectorAll(".checklist.validacion input")).map(i => i.checked),
