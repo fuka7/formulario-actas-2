@@ -174,6 +174,8 @@ function generarContenidoActa(data) {
         </tr>
       </table>
 
+      <div class="spacer"></div>
+      
       <!-- OBSERVACIONES -->
       <table>
         <tr class="section-header"><td><strong>Observaciones Técnico</strong></td></tr>
