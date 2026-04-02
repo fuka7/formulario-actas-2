@@ -179,7 +179,7 @@ function generarContenidoActa(data) {
       <!-- OBSERVACIONES -->
       <table>
         <tr class="section-header"><td><strong>Observaciones Técnico</strong></td></tr>
-        <tr><td><div class="obs-box">${data.observacion ? data.observacion : '—'}</div></td></tr>
+        <tr><td><div class="obs-box">${data.observacion ? data.observacion : ''}</div></td></tr>
       </table>
 
       <div class="spacer"></div>
