@@ -446,50 +446,53 @@ function activarAutocompleteUnidad(inputId) {
 // ---------------------------------------------------------------
 // VALIDACIÓN DE CAMPOS REQUERIDOS AL SALIR DEL CAMPO
 // ---------------------------------------------------------------
-// function activarValidacionRequeridos() {
-//     const required = Array.from(document.querySelectorAll('#registroForm [required]'));
-//     required.forEach(input => {
-//         input.addEventListener('blur', () => {
-//             const val = (input.value || '').toString().trim();
-//             if (!val) {
-//                 input.classList.add('input-error', 'input-shake');
-//                 input.addEventListener('animationend', function onEnd() {
-//                     input.classList.remove('input-shake');
-//                     input.removeEventListener('animationend', onEnd);
-//                 });
-//             } else {
-//                 input.classList.remove('input-error', 'input-valid');
-//             }
-//         });
-//     });
-// }
+function activarValidacionRequeridos() {
+    const required = Array.from(document.querySelectorAll('#registroForm [required]'));
+    required.forEach(input => {
+        input.addEventListener('blur', () => {
+            const val = (input.value || '').toString().trim();
+            if (!val) {
+                input.classList.add('input-error', 'input-shake');
+                input.addEventListener('animationend', function onEnd() {
+                    input.classList.remove('input-shake');
+                    input.removeEventListener('animationend', onEnd);
+                });
+            } else {
+                input.classList.remove('input-error', 'input-valid');
+            }
+        });
+    });
+}
 
 // ---------------------------------------------------------------
 // INIT
 // ---------------------------------------------------------------
-// function inicializarValidaciones() {
-//     // Datos Generales (usuario del equipo)
-//     activarValidacionRut("rutUsuarioDG",       "errorRutUsuarioDG");
-//     activarValidacionEmail("emailUsuarioDG",   "errorEmailUsuarioDG");
-//     activarValidacionTelefono("telefonoDG",    "errorTelefonoDG");
+function inicializarValidaciones() {
+    // Datos Generales (usuario del equipo)
+    activarValidacionRut("rutUsuarioDG",       "errorRutUsuarioDG");
+    activarValidacionEmail("emailUsuarioDG",   "errorEmailUsuarioDG");
+    activarValidacionTelefono("telefonoDG",    "errorTelefonoDG");
 
 
-//     // Usuario Asignado (responsable MINSAL)
-//     activarValidacionRut("rutUsuarioAsignado", "errorRutUsuarioAsignado");
-//     activarValidacionEmail("correoUsuario",    "errorCorreoUsuario");
-//     activarValidacionTelefono("telefonoUsuario", "errorTelefonoUsuario");
+    // Técnico Instalador
+    activarValidacionRut("rutTecnico", "errorRutTecnico");
 
-//     // Datos Firmante (solo activos cuando el checkbox NO está marcado)
-//     activarValidacionRutFirmante("rutFirmante",       "errorRutFirmante");
-//     activarValidacionEmail("correoFirmante",          "errorCorreoFirmante");
-//     activarValidacionTelefono("telefonoFirmante",     "errorTelefonoFirmante");
+    // Usuario Asignado (responsable MINSAL)
+    activarValidacionRut("rutUsuarioAsignado", "errorRutUsuarioAsignado");
+    activarValidacionEmail("correoUsuario",    "errorCorreoUsuario");
+    activarValidacionTelefono("telefonoUsuario", "errorTelefonoUsuario");
 
-//     activarAutocompleteUnidad("unidad");
-//     activarAutocompleteUnidad("unidadUsuario");
-//     activarAutocompleteUnidad("unidadFirmante");
+    // Datos Firmante (solo activos cuando el checkbox NO está marcado)
+    activarValidacionRutFirmante("rutFirmante",       "errorRutFirmante");
+    activarValidacionEmail("correoFirmante",          "errorCorreoFirmante");
+    activarValidacionTelefono("telefonoFirmante",     "errorTelefonoFirmante");
 
-//     activarValidacionRequeridos();
-// }
+    activarAutocompleteUnidad("unidad");
+    activarAutocompleteUnidad("unidadUsuario");
+    activarAutocompleteUnidad("unidadFirmante");
+
+    activarValidacionRequeridos();
+}
 
 // ---------------------------------------------------------------
 // ACTIVAR VALIDACIÓN RUT FIRMANTE (solo si sección visible)

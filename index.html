@@ -30,38 +30,38 @@
             <h2><span class="section-icon">🏢</span> Datos Generales</h2>
 
             <div class="grid-2">
-                <select id="organismo">
+                <select id="organismo" required>
                     <option value="">Seleccione Organismo</option>
                 </select>
-                <input type="text" id="establecimiento" placeholder="Establecimiento">
-                <input type="text" id="direccion" placeholder="Dirección">
+                <input type="text" id="establecimiento" placeholder="Establecimiento" required>
+                <input type="text" id="direccion" placeholder="Dirección" required>
 
-                <select id="region">
+                <select id="region" required>
                     <option value="">Seleccione Región</option>
                 </select>
 
-                <select id="ciudad">
+                <select id="ciudad" required>
                     <option value="">Seleccione Comuna</option>
                 </select>
 
-                <div style="position:relative"><input type="text" id="unidad" placeholder="Unidad o Departamento" style="width:100%"></div>
-                <input type="date" id="fecha">
-                <input type="text" id="usuarioDG" placeholder="Nombre de Usuario">
+                <div style="position:relative"><input type="text" id="unidad" placeholder="Unidad o Departamento" style="width:100%" required></div>
+                <input type="date" id="fecha" required>
+                <input type="text" id="usuarioDG" placeholder="Nombre de Usuario" required>
 
                 <div>
-                    <input type="text" id="rutUsuarioDG" placeholder="RUT Usuario (12.345.678-9)" maxlength="12">
+                    <input type="text" id="rutUsuarioDG" placeholder="RUT Usuario (12.345.678-9)" maxlength="12" required>
                     <small id="errorRutUsuarioDG" class="error-message"></small>
                 </div>
 
                 <div>
-                    <input type="email" id="emailUsuarioDG" placeholder="Email Usuario">
+                    <input type="email" id="emailUsuarioDG" placeholder="Email Usuario" required>
                     <small id="errorEmailUsuarioDG" class="error-message"></small>
                 </div>
                 <div>
-                    <input type="text" id="telefonoDG" placeholder="Teléfono de Usuario">
+                    <input type="text" id="telefonoDG" placeholder="Teléfono de Usuario" required>
                     <small id="errorTelefonoDG" class="error-message"></small>
                 </div>
-                <input type="text" id="cargoUsuarioDG" placeholder="Cargo Usuario">
+                <input type="text" id="cargoUsuarioDG" placeholder="Cargo Usuario" required>
             </div>
 
             <h3>Series de Equipos</h3>
@@ -127,9 +127,9 @@
         <section class="card">
             <h2><span class="section-icon">🔧</span> Técnico Instalador</h2>
             <div class="grid-2">
-                <input type="text" id="tecnico" placeholder="Nombre del Técnico Instalador">
+                <input type="text" id="tecnico" placeholder="Nombre del Técnico Instalador" required>
                 <div>
-                    <input type="text" id="rutTecnico" placeholder="RUT Técnico (12.345.678-9)" maxlength="12">
+                    <input type="text" id="rutTecnico" placeholder="RUT Técnico (12.345.678-9)" maxlength="12" required>
                     <small id="errorRutTecnico" class="error-message"></small>
                 </div>
             </div>
@@ -155,13 +155,13 @@
                     <small id="errorRutFirmante" class="error-message"></small>
                 </div>
                 <input type="text" id="cargoFirmante" placeholder="Cargo" required>
-                <div style="position:relative"><input type="text" id="unidadFirmante" placeholder="Unidad o Departamento" style="width:100%"></div>
+                <div style="position:relative"><input type="text" id="unidadFirmante" placeholder="Unidad o Departamento" style="width:100%" required></div>
                 <div>
-                    <input type="email" id="correoFirmante" placeholder="Correo electrónico">
+                    <input type="email" id="correoFirmante" placeholder="Correo electrónico" required>
                     <small id="errorCorreoFirmante" class="error-message"></small>
                 </div>
                 <div>
-                    <input type="text" id="telefonoFirmante" placeholder="Teléfono">
+                    <input type="text" id="telefonoFirmante" placeholder="Teléfono" required>
                     <small id="errorTelefonoFirmante" class="error-message"></small>
                 </div>
             </div>
@@ -177,7 +177,12 @@
             </div>
 
             <div class="firma-buttons">
-                <!-- Botones de firma eliminados, ya no se requieren -->
+                <button type="button" onclick="clearSignature()" class="btn-limpiar">
+                    🗑 Limpiar firma
+                </button>
+                <button type="button" onclick="saveSignature()" class="btn-confirmar">
+                    ✔ Confirmar firma
+                </button>
             </div>
 
             <div class="firma-confirmed" id="firmaConfirmada">
@@ -197,6 +202,12 @@
         </section>
 
     </form>
+</div>
+
+<div id="customToast" class="custom-toast" role="alert" aria-live="assertive">
+    <span id="customToastIcon" class="toast-icon"></span>
+    <span id="customToastMsg" class="toast-msg"></span>
+    <button class="toast-close" onclick="ocultarToast()" aria-label="Cerrar">✕</button>
 </div>
 
 <script src="regiones-comunas.js"></script>

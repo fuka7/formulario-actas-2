@@ -1,5 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+// ================= TOAST DE ALERTA =================
+
+let _toastTimer = null;
+function mostrarToast(mensaje, tipo = 'error') {
+    const toast = document.getElementById('customToast');
+    const icon  = document.getElementById('customToastIcon');
+    const msg   = document.getElementById('customToastMsg');
+    if (!toast) { alert(mensaje); return; }
+    toast.className = 'custom-toast toast-' + tipo;
+    icon.textContent = tipo === 'error' ? '⚠' : '✔';
+    msg.textContent  = mensaje;
+    toast.classList.add('show');
+    clearTimeout(_toastTimer);
+    _toastTimer = setTimeout(() => ocultarToast(), 4500);
+}
+window.ocultarToast = function () {
+    const toast = document.getElementById('customToast');
+    if (toast) toast.classList.remove('show');
+    clearTimeout(_toastTimer);
+};
+
 // ================= SELECTS =================
 
 const organismoSelect = document.getElementById("organismo");
@@ -234,16 +255,28 @@ window.clearSignature = function () {
 };
 
 window.saveSignature = function () {
-    if (!hasSignature) { alert("Debe realizar la firma antes de confirmarla"); return; }
+    if (!hasSignature) { mostrarToast("Debe realizar la firma antes de confirmarla"); return; }
+
+    const required = Array.from(document.querySelectorAll('#registroForm [required]'));
+    required.forEach(i => {
+        const val = (i.value || '').toString().trim();
+        if (!val) {
+            i.classList.add('input-error', 'input-shake');
+            i.addEventListener('animationend', function onEnd() {
+                i.classList.remove('input-shake');
+                i.removeEventListener('animationend', onEnd);
+            });
+        } else {
+            i.classList.remove('input-error');
+        }
+    });
+
     const dataURL = canvas.toDataURL("image/png");
     document.getElementById("firmaBase64").value = dataURL;
-    const btnConfirmar = document.querySelector('.btn-confirmar');
-    if (btnConfirmar) btnConfirmar.style.boxShadow = '';
-    const msg = document.getElementById('firmaErrorMsg');
-    if (msg) msg.textContent = '';
+    document.querySelector('.firma-container')?.classList.remove('firma-error');
     const confirmed = document.getElementById('firmaConfirmada');
     if (confirmed) confirmed.classList.add('show');
-    else alert("Firma confirmada correctamente ✔");
+    else mostrarToast("Firma confirmada correctamente", "success");
 };
 
 
@@ -305,9 +338,14 @@ function mostrarBotonNuevaActa() {
 // ================= GENERAR PDF =================
 
 window.generarPDF = async function () {
-    // Permitir descargar el acta sin requerir firma digital
     const firmaGuardada = document.getElementById("firmaBase64").value;
-    const firma = firmaGuardada || "";
+    if (!firmaGuardada) {
+        mostrarToast("Debe confirmar la firma antes de generar el acta.");
+        document.querySelector('.firma-container')?.classList.add('firma-error');
+        document.getElementById('signaturePad')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
+    const firma = firmaGuardada;
     const numeroActa = "ACTA-" + Date.now();
     const g = (id) => { const el = document.getElementById(id); return el ? el.value : ''; };
 
@@ -351,20 +389,21 @@ window.generarPDF = async function () {
         telefonoFirmante:  g("telefonoFirmante"),
     };
 
-    // Validar requeridos (desactivado para permitir descarga en blanco)
-    // const required = Array.from(document.querySelectorAll('#registroForm [required]'));
-    // const empty    = required.filter(i => !(i.value || '').toString().trim());
-    // if (empty.length) {
-    //     empty.forEach(i => {
-    //         i.classList.add('input-error', 'input-shake');
-    //         i.addEventListener('animationend', function onEnd() {
-    //             i.classList.remove('input-shake');
-    //             i.removeEventListener('animationend', onEnd);
-    //         });
-    //     });
-    //     empty[0].focus();
-    //     return;
-    // }
+    const required = Array.from(document.querySelectorAll('#registroForm [required]'));
+    const empty    = required.filter(i => !(i.value || '').toString().trim());
+    if (empty.length) {
+        empty.forEach(i => {
+            i.classList.add('input-error', 'input-shake');
+            i.addEventListener('animationend', function onEnd() {
+                i.classList.remove('input-shake');
+                i.removeEventListener('animationend', onEnd);
+            });
+        });
+        empty[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        empty[0].focus();
+        mostrarToast("Complete todos los campos obligatorios antes de generar el acta.");
+        return;
+    }
 
     const contenido = generarContenidoActa(data);
     const tempDiv   = document.createElement("div");

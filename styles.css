@@ -418,6 +418,11 @@ textarea {
 }
 .btn-confirmar:hover { filter: brightness(1.08); }
 
+.firma-container.firma-error {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(217,48,37,0.12);
+}
+
 .firma-confirmed {
     display: none;
     align-items: center;
@@ -432,6 +437,56 @@ textarea {
     max-width: 520px;
 }
 .firma-confirmed.show { display: flex; }
+
+/* ===== CUSTOM TOAST ===== */
+.custom-toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-120%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 99999;
+    min-width: 280px;
+    max-width: 480px;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+.custom-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+.custom-toast.toast-error {
+    background: var(--red-light);
+    border: 1px solid var(--red);
+    color: var(--red);
+}
+.custom-toast.toast-success {
+    background: var(--green-light);
+    border: 1px solid var(--green);
+    color: var(--green);
+}
+.toast-icon { font-size: 16px; flex-shrink: 0; }
+.toast-msg  { flex: 1; line-height: 1.4; }
+.toast-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    color: inherit;
+    opacity: 0.7;
+    padding: 0 0 0 6px;
+    flex-shrink: 0;
+}
+.toast-close:hover { opacity: 1; }
 
 /* ===== SUBMIT BUTTON ===== */
 .submit-btn {
